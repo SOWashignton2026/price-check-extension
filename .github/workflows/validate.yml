@@ -1,0 +1,40 @@
+name: Validate extension
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest.json
+        run: |
+          node -e '
+            const fs = require("fs");
+            const m = JSON.parse(fs.readFileSync("extension/manifest.json", "utf8"));
+            if (m.manifest_version !== 3) {
+              console.error("manifest_version must be 3");
+              process.exit(1);
+            }
+            for (const key of ["name", "version", "description"]) {
+              if (!m[key]) {
+                console.error("missing " + key);
+                process.exit(1);
+              }
+            }
+            console.log(m.name + " " + m.version);
+          '
+      - name: Syntax-check extension JavaScript
+        run: |
+          shopt -s nullglob
+          files=(extension/*.js)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "no extension JavaScript files"
+            exit 1
+          fi
+          for f in "${files[@]}"; do
+            echo "node --check $f"
+            node --check "$f"
+          done

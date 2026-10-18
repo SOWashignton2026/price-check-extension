@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy – Price Check – Compare Prices via Webhook</title>
+<meta name="description" content="Privacy policy for the Price Check Chrome extension.">
+<link rel="icon" type="image/png" href="icon128.png">
+<style>
+body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;color:#1f2328;background:#fff}
+h1{font-size:28px;line-height:1.25}h2{font-size:20px;margin-top:32px}a{color:#0969da}code{background:#f6f8fa;padding:1px 5px;border-radius:4px;font-size:90%}
+nav{margin-bottom:24px;font-size:14px}footer{margin-top:48px;padding-top:12px;border-top:1px solid #d0d7de;font-size:13px;color:#57606a}
+</style>
+</head>
+<body>
+<nav><a href="index.html">← Home</a></nav>
+<h1>Privacy Policy – Price Check – Compare Prices via Webhook</h1>
+<p><i>Last updated: October 18, 2026</i></p>
+<p>Price Check – Compare Prices via Webhook ("the extension") is an independent project. Not affiliated with or endorsed by xAI/Grok.</p>
+<h2>The short version</h2>
+<ul>
+  <li>The developer collects <b>nothing</b>. There are no developer servers, no accounts, no analytics, no tracking, and no ads.</li>
+  <li>The extension sends data <b>only to the webhook URL you configure yourself</b> (for example, your own Grok Bot routine), and only when you ask it to.</li>
+  <li>Your settings stay <b>in your browser</b>.</li>
+</ul>
+<h2>What the extension reads, and when</h2>
+<p>The extension reads the current tab <b>only when you trigger it</b>: by clicking <b>Check price</b> or <b>Full check</b>, using the right-click menu item, or pressing the keyboard shortcut. It never runs in the background on pages you visit.</p>
+<p>When triggered, it reads only:</p>
+<ul>
+  <li>the page address (URL) and page title, and</li>
+  <li>product details the page publishes: name, price, currency, store (website name), brand, SKU, GTIN/UPC/EAN, MPN, Amazon ASIN, and product image address.</li>
+</ul>
+<p>It does <b>not</b> read or send cookies, passwords, form fields, browsing history, or the full contents of the page.</p>
+<h2>Where that data goes</h2>
+<p>That information is sent in a single HTTPS request to the webhook URL you entered in Options, along with the sender key you entered (as an Authorization header, a custom header, or a query parameter, as you chose). The webhook belongs to the service you chose (for example, your own Grok Bot), and what happens to the data after that is governed by that service's own terms and privacy policy.</p>
+<p>The developer of this extension never receives a copy.</p>
+<h2>What is stored</h2>
+<p>Your webhook URL, sender key, and "Send key as" choice are saved with <code>chrome.storage.local</code> on your device. They are not synced or sent anywhere except as part of the request to your webhook. Removing the extension deletes them.</p>
+<h2>Permissions</h2>
+<ul>
+  <li><b>activeTab</b> and <b>scripting</b>: read product details from the tab you are on, only when you trigger a check.</li>
+  <li><b>storage</b>: save your settings locally.</li>
+  <li><b>contextMenus</b>: add the right-click "Check price" items.</li>
+  <li><b>Optional access to your webhook's site</b> (requested when you click Save): lets the extension send requests to that one site. You can revoke it any time at <code>chrome://extensions</code>.</li>
+</ul>
+<h2>Changes and contact</h2>
+<p>If this policy changes, the updated version will be published with the extension and on its listing page. Questions: contact the developer through the Chrome Web Store listing.</p>
+<footer>Price Check – Compare Prices via Webhook · Independent project. Not affiliated with or endorsed by xAI/Grok.</footer>
+</body>
+</html>

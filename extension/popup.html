@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="title">Price Check</span>
+    <a href="#" id="gear" title="Options" aria-label="Options">⚙</a>
+  </header>
+  <div id="setup" hidden>
+    Not connected to your assistant yet. <a href="#" id="finishSetup">Finish setup</a>
+  </div>
+  <button id="check">Check price</button>
+  <button id="full" class="secondary">Full check</button>
+  <div class="caption">History, reviews, returns &amp; more, takes a few minutes</div>
+  <div id="status" role="status"></div>
+  <div id="preview"></div>
+  <script src="common.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

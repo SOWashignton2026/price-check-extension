@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Price Check – Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h1>Price Check – Options</h1>
+  <p class="hint">Paste the webhook URL and sender key from the <b>Check price from browser extension</b> webhook routine in your own AI assistant (for example a Grok Bot routine).
+    New here? <a href="welcome.html">Read the setup guide</a>.</p>
+
+  <label for="webhookUrl">Webhook URL</label>
+  <input id="webhookUrl" type="url" placeholder="https://…" autocomplete="off" spellcheck="false">
+
+  <label for="senderKey">Sender key</label>
+  <div class="row">
+    <input id="senderKey" type="password" autocomplete="off" spellcheck="false">
+    <button id="toggleKey" type="button" class="secondary">Show</button>
+  </div>
+
+  <label for="keyMode">Send key as</label>
+  <select id="keyMode">
+    <option value="bearer">Authorization: Bearer &lt;key&gt;</option>
+    <option value="header">Custom header</option>
+    <option value="query">Query parameter</option>
+  </select>
+
+  <div id="keyNameWrap" hidden>
+    <label for="keyName" id="keyNameLabel">Header name</label>
+    <input id="keyName" type="text" placeholder="X-Webhook-Key" autocomplete="off" spellcheck="false">
+  </div>
+
+  <div class="buttons">
+    <button id="save" type="button">Save</button>
+    <button id="test" type="button" class="secondary">Send test</button>
+  </div>
+  <div id="status" role="status"></div>
+
+  <p class="hint small">Saving asks Chrome for permission to contact only your webhook's site. The extension reads a page only when you click
+    the button, use the right-click menu, or press Alt+Shift+P / Alt+Shift+F (change at chrome://extensions/shortcuts).
+    Your settings are stored only in this browser. Not affiliated with or endorsed by xAI/Grok.</p>
+  <script src="common.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

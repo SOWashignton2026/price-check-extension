@@ -1,0 +1,28 @@
+Please create a routine for me named "Check price from browser extension" with a webhook trigger. I will connect it to the "Price Check – Compare Prices via Webhook" Chrome extension, which sends a JSON POST to the webhook whenever I click its button on a product page I'm viewing.
+
+The extension sends JSON like this (any field may be null):
+{
+  "source": "price-check-extension",
+  "mode": "quick" or "full",
+  "url": "...",
+  "page_title": "...",
+  "sent_at": "ISO 8601 time",
+  "product": { "name", "price", "currency", "retailer", "brand", "sku", "gtin", "mpn", "asin", "image" }
+}
+
+Job for the routine, on every webhook payload:
+1. Only act on payloads where "source" is "price-check-extension". Ignore anything else.
+2. If "test" is true, just reply in this chat: "Price Check extension connected. Webhook is working." and do nothing else.
+3. Identify the exact product, using gtin, mpn, asin, sku, brand and name, and the url and page_title if the product fields are empty. Note the price shown on the page I'm viewing.
+4. If mode is "quick": quickly check current prices for the same item (same model, new condition) at other major retailers, such as Amazon, Walmart, Target, Best Buy, Costco, eBay (new only), the brand's own store, and relevant specialty stores for my country. Reply with a markdown table sorted cheapest first: Retailer | Price | Shipping | Total | vs. this page | Link. Include only offers you are confident are the same item, then add a one-line verdict. If nothing is cheaper, say so.
+5. If mode is "full": do everything from "quick", then add these sections, using markdown tables where it makes sense:
+   - Price history: recent low, high, and typical price, and whether now is a good time to buy.
+   - Reviews summary: ratings from major sources, common pros and cons.
+   - Return policies: return window, return shipping cost, and restocking fees at each retailer in the table.
+   - Shipping: delivery speed and cost.
+   - Coupons and deals: current promo codes, cashback, and price-match options.
+   End with a short recommendation.
+6. Always include links and the currency for every price, and clearly mark anything uncertain. Never buy anything, sign in anywhere, or contact any retailer.
+7. Post the results as a reply in this chat.
+
+When the routine is created, tell me its webhook URL, its sender key (secret), and exactly how the key must be sent (Authorization: Bearer header, a custom header and its name, or a query parameter and its name), so I can paste them into the extension's settings.
